@@ -11,11 +11,14 @@ const render = () => {
 }
 
 const addEventListeners = () => {
-  document.querySelector('a').addEventListener('click', e => {
-    e.preventDefault();
+  const filmLink = document.querySelector('a');
 
-    window['router'].navigate(e.target.getAttribute('href'));
-  })
+  filmLink.addEventListener('click', navigateToFilmPage)
+}
+
+const navigateToFilmPage = (event) => {
+  event.preventDefault();
+  window['router'].navigate(event.target.getAttribute('href'));
 }
 
 export default MainPage;
