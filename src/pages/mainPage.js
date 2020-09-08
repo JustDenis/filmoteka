@@ -21,9 +21,21 @@ function MainPage() {
   
   refs.inputForm.addEventListener('submit', inputFormHandler);
   refs.listControls.addEventListener('click', litsControlsHandler);
+  refs.moviesList.addEventListener('click', e=>{
+    e.preventDefault();
+
+    // console.dir(e.target.closest('li').querySelector('a').getAttribute('href'));
+    // console.dir(e.target)
+
+    // console.log(window['router'].navigate);
+
+    window['router'].navigate(e.target.closest('li').querySelector('a').getAttribute('href'));
+  })
+
   
   const buttonsArrRef = refs.listControls.querySelectorAll('button');
   buttonsArrRef.forEach(btn => (btn.disabled = true));
+
   
   function inputFormHandler(e) {
     e.preventDefault();
@@ -76,6 +88,8 @@ function MainPage() {
   function renderMoviesListData(array) {
     const markup = listTemplate(array);
     refs.moviesList.insertAdjacentHTML('beforeend', markup);
+    
+    console.log(refs.moviesList);
   }
   
   function litsControlsHandler(e) {
