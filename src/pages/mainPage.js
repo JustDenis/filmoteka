@@ -4,16 +4,20 @@ import { ROOT_DOM } from '../constants';
 
 
 const MainPage = () => {
+<<<<<<< HEAD
   render();
 }
+=======
+>>>>>>> 4f5fc7a028783e33c461925064326d821870d3ee
 
-const render = () => {
-  ROOT_DOM.innerHTML = MainPageTemplate();
 }
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 4f5fc7a028783e33c461925064326d821870d3ee
 
 export default MainPage;
