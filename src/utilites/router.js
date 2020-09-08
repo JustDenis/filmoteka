@@ -37,8 +37,6 @@ export default class Router {
         route.callback.apply({}, match);
         return match;
       }
-
-      this.error.callback.apply({}, match);
       return false;
     });
   }

@@ -2,8 +2,8 @@ import './styles.css';
 
 import Router from './utilites/router';
 
-import MainPage from './pages/main';
-import FilmPage from './pages/film';
+import MainPage from './pages/mainPage';
+import FilmPage from './pages/filmDetailPage';
 
 window['router'] = new Router({
   root: '/',
@@ -15,14 +15,10 @@ window['router'] = new Router({
       },
     },
     {
-      path: 'main',
+      path: '',
       callback: () => {
         MainPage();
       }
     }],
-  error: {
-    callback: () => {
-      console.log('404')
-    }
-  }
+
 });
