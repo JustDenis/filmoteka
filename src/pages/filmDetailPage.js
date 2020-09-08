@@ -1,12 +1,8 @@
-import FilmPageTemplate from '../templates/film.hbs';
+import FilmPageTemplate from '../templates/Film.hbs';
 import { ROOT_DOM } from '../constants';
 
-const FilmPage = (id) => {
-  const markup = FilmPageTemplate({ id });
+const FilmPage = () => {
 
-  //
-
-  ROOT_DOM.innerHTML = markup;
 }
 
 export default FilmPage;
