@@ -15,9 +15,14 @@ window['router'] = new Router({
       },
     },
     {
-      path: '',
+      path: 'main',
       callback: () => {
         MainPage();
       }
-    }]
+    }],
+  error: {
+    callback: () => {
+      console.log('404')
+    }
+  }
 });
