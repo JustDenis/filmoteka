@@ -1,6 +1,7 @@
 export default class Router {
-  constructor({ root, routes }) {
+  constructor({ root, error, routes }) {
     this.root = root || '/';
+    this.error = error || '/404';
     this.routes = routes || [];
     this.listen();
   }
@@ -36,6 +37,8 @@ export default class Router {
         route.callback.apply({}, match);
         return match;
       }
+
+      this.error.callback.apply({}, match);
       return false;
     });
   }
