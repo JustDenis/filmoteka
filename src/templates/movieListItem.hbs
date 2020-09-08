@@ -1,0 +1,26 @@
+{{#each this}}
+<li class="list-item" data-movieid="{{id}}">
+    <a href="films/{{id}}" class="item-link">
+        <div class="item-image">
+            {{#if havePoster}}
+            <img src="http://image.tmdb.org/t/p/original{{poster_path}}" alt="{{original_title}}" class="item-poster">
+            {{else}}
+            <img src="http://consaltliga.com.ua/wp-content/themes/consultix/images/no-image-found-360x250.png"
+                alt="{{original_title}}" class="item-poster">
+            {{/if}}
+        </div>
+        <div class="item-info">
+            <h4 class=" item-title">{{title}}</h4>
+
+            <div class="item-year">
+                <span class="item-year-name">Year: </span>
+                <span class="item-year-data">{{release_date}}</span>
+            </div>
+            <div class="item-vote">
+                <span class="item-vote-name">Vote: </span>
+                <span class="item-vote-data">{{vote_average}}</span>
+            </div>
+        </div>
+    </a>
+</li>
+{{/each}}
