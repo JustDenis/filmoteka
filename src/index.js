@@ -1,5 +1,6 @@
 import './styles.css';
-import './styles/mainPage.css'
+import './styles/mainPage.css';
+import './styles/FilmPage.css';
 
 import Router from './utilites/router';
 
@@ -12,14 +13,14 @@ window['router'] = new Router({
     {
       path: /film\/(.*)/,
       callback: () => {
-        FilmPage()
+        FilmPage();
       },
     },
     {
       path: '',
       callback: () => {
         MainPage();
-      }
-    }],
-
+      },
+    },
+  ],
 });

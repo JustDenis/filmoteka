@@ -1,0 +1,43 @@
+<div class="film container display-section">
+    <div class="film__img">
+        <img class="film__img--item" src="{{img}}" alt="" />
+    </div>
+
+    <div class="film__description">
+        <h1 class="film__description--title">{{title}} ({{year}})</h1>
+
+        <div class="film__description--votes">
+            <p class="film__votes--title">vote/votes</p>
+            <p class="film__votes--value">{{vote}}/{{votes}}</p>
+        </div>
+
+        <div class="film__description--popularity">
+            <p class="film__popularity--title">popularity</p>
+            <p class="film__popularity--value">{{popularity}}</p>
+        </div>
+
+        <div class="film__description--name">
+            <p class="film__name--title">original title</p>
+            <p class="film__name--value"></p>
+        </div>
+
+        <div class="film__description--genre">
+            <p class="film__genre--title">genre</p>
+            <ul class="film__votes--value">
+                {{#each genres}}
+                <li class="film__votes--value">{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <h1 class="film__description--about">About</h1>
+        <p class="film__description--text">{{overview}}</p>
+
+        <div class="film__description--buttons">
+            <img class="videoBtn" src="./images/detailsVideo.png" alt="" />
+            <button class="film__buttons--favorite">Add to watched</button>
+            <img src="./images/detailsCalendar.png" alt="" class="calendarBtn" />
+            <button class="film__buttons--queue">Add to queue</button>
+        </div>
+    </div>
+</div>
