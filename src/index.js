@@ -11,8 +11,8 @@ window['router'] = new Router({
   routes: [
     {
       path: /film\/(.*)/,
-      callback: (id) => {
-        FilmPage(id)
+      callback: () => {
+        FilmPage()
       },
     },
     {
