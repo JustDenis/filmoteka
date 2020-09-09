@@ -12,58 +12,56 @@ function MainPage() {
   }
   renderBaseMarkup();
 
-
   const refs = {
     inputForm: document.querySelector('#search-form'),
     moviesList: document.querySelector('.films-list'),
     listControls: document.querySelector('.list-controls'),
   };
-  
+
   refs.inputForm.addEventListener('submit', inputFormHandler);
   refs.listControls.addEventListener('click', litsControlsHandler);
-  refs.moviesList.addEventListener('click', e=>{
+  refs.moviesList.addEventListener('click', e => {
     e.preventDefault();
+    window['router'].navigate(
+      e.target.closest('li').querySelector('a').getAttribute('href'),
+    );
+  });
 
-    // console.dir(e.target.closest('li').querySelector('a').getAttribute('href'));
-    // console.dir(e.target)
-
-    // console.log(window['router'].navigate);
-
-    window['router'].navigate(e.target.closest('li').querySelector('a').getAttribute('href'));
-  })
-
-  
   const buttonsArrRef = refs.listControls.querySelectorAll('button');
   buttonsArrRef.forEach(btn => (btn.disabled = true));
+  buttonsArrRef.forEach(btn => btn.classList.remove('control-btn'));
+  buttonsArrRef.forEach(btn => btn.classList.add('non-visible'));
 
-  
   function inputFormHandler(e) {
     e.preventDefault();
-  
+
     const input = e.currentTarget.querySelector('input');
     const inputValue = input.value;
     const parsedValue = inputValue.split(' ').join('+');
-  
+
     if (parsedValue === '') {
       return;
     }
-  
+
     clearMoviesList();
     tmdbApi.resetPage();
     tmdbApi.searchQuery = parsedValue;
-  
+
     tmdbApi.fetchRequest().then(data => {
-      // renderMoviesListData(data.results);
       dataParser(data.results);
-  
+
       buttonsArrRef[1].disabled = false;
+      buttonsArrRef[1].classList.remove('non-visible');
+      buttonsArrRef[1].classList.add('control-btn');
+
+      updatePageNumber(tmdbApi.page);
     });
   }
-  
+
   function clearMoviesList() {
     refs.moviesList.innerHTML = '';
   }
-  
+
   function dataParser(array) {
     const newArray = array.map(el => {
       const newObj = {
@@ -78,90 +76,102 @@ function MainPage() {
         havePoster: el.poster_path ? true : false,
         vote_average: el.vote_average,
       };
-  
+
       return newObj;
     });
-  
+
     renderMoviesListData(newArray);
   }
-  
+
   function renderMoviesListData(array) {
     const markup = listTemplate(array);
     refs.moviesList.insertAdjacentHTML('beforeend', markup);
-    
-    console.log(refs.moviesList);
   }
-  
+
   function litsControlsHandler(e) {
-    const actionType = e.target.dataset.action;
-  
+    const actionType = e.target.closest('button').dataset.action;
+
     if (actionType === 'increment') {
       clearMoviesList();
       nextPageBtnHandler();
     } else {
       clearMoviesList();
       prevPageBtnHandler();
+      console.dir(e.target.closest('button'));
     }
   }
-  
+
   function nextPageBtnHandler() {
     tmdbApi.incrementPage();
-  
     if (tmdbApi.query === '') {
       return;
     }
-  
+
     tmdbApi.fetchRequest().then(data => {
       dataParser(data.results);
-  
+
       const currentPage = data.page;
       const maxPage = data.total_pages;
-  
+
       buttonLocker(currentPage, maxPage);
     });
   }
-  
+
   function prevPageBtnHandler() {
+    if (tmdbApi.page === 1) {
+      return;
+    }
+
     tmdbApi.decrementPage();
-  
     if (tmdbApi.query === '') {
       return;
     }
+
     tmdbApi.fetchRequest().then(data => {
       dataParser(data.results);
-  
+
       const currentPage = data.page;
       const maxPage = data.total_pages;
-  
+
       buttonLocker(currentPage, maxPage);
     });
   }
-  
+
   function updatePageNumber(num) {
-    const pageNumber = refs.listControls.querySelector('span');
+    const pageNumber = refs.listControls.querySelector('.page-number-value');
     pageNumber.textContent = num;
   }
-  
+
   function buttonLocker(currentPage, maxPage) {
     const prevBtn = buttonsArrRef[0];
     const nextBtn = buttonsArrRef[1];
-  
-    updatePageNumber(currentPage);
-  
+
+    updatePageNumber(currentPage, maxPage);
+
+    console.log(currentPage);
+
     if (currentPage === 1) {
-      nextBtn.disabled = false;
       prevBtn.disabled = true;
+      nextBtn.disabled = false;
+
+      prevBtn.classList.remove('control-btn');
+      prevBtn.classList.add('non-visible');
     } else if (currentPage === maxPage) {
       prevBtn.disabled = false;
       nextBtn.disabled = true;
+
+      nextBtn.classList.remove('control-btn');
+      nextBtn.classList.add('non-visible');
     } else {
       nextBtn.disabled = false;
       prevBtn.disabled = false;
+
+      prevBtn.classList.remove('non-visible');
+      nextBtn.classList.remove('non-visible');
+      prevBtn.classList.add('control-btn');
+      nextBtn.classList.add('control-btn');
     }
   }
-
-
-
 }
 
 export default MainPage;
