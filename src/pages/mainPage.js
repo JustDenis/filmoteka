@@ -1,7 +1,9 @@
 import MainPageTemplate from '../templates/Main.hbs';
 import listTemplate from '../templates/movieListItem.hbs';
 
+import trendsApi from '../services/apiRequestTrendings'
 import tmdbApi from '../services/apiRequestMain';
+
 
 import { ROOT_DOM } from '../constants';
 
@@ -11,6 +13,12 @@ function MainPage() {
     ROOT_DOM.innerHTML = markup;
   }
   renderBaseMarkup();
+
+
+  trendsApi().then(data=>dataParser(data));
+
+
+  
 
   const refs = {
     inputForm: document.querySelector('#search-form'),
