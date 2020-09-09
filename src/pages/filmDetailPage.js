@@ -15,6 +15,7 @@ const FilmPage = () => {
       popularity,
       genres,
       overview,
+      original_title,
     } = data;
     console.log(data);
     const filmObject = {
@@ -29,6 +30,7 @@ const FilmPage = () => {
       popularity,
       genres: genres.map(genre => genre.name),
       overview,
+      originalTitle: original_title,
     };
     markup = FilmPageTemplate(filmObject);
     ROOT_DOM.innerHTML = markup;

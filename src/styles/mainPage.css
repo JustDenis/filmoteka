@@ -1,76 +1,219 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 768px;
-    min-width: 320px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  #search-form {
-    border-bottom: 2px solid black;
-    width: 290px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  
-  #search-form > input {
-    border: none;
-    width: 255px;
-    outline: 0;
-  }
-  
-  #search-form > button {
-    position: relative;
-    border: none;
-    background: none;
-    bottom: 1px;
-    outline: 0;
-  }
-  
-  .list-item {
-    width: 300px;
-    list-style: none;
-  }
-  
-  .item-link {
-    position: relative;
-    display: flex;
-    width: 100%;
-    margin-top: 20px;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    color: black;
-    border: 1px solid #000;
-    border-radius: 5px;
-  }
-  
-  .item-image {
-    margin-top: 5px;
-    margin-left: 5px;
-    width: 104px;
-  }
-  
-  .item-info {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    width: 195px;
-  }
-  
-  .item-poster {
-    height: 155px;
-    border-radius: 5px;
-  }
-  
-  .item-title {
-      padding: 5px;
-      /* border: 1px solid #000; */
-  }
+  margin: 0;
+  padding: 0;
+}
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 768px;
+  min-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#search-form {
+  border-bottom: 2px solid black;
+  width: 290px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#search-form > input {
+  border: none;
+  width: 255px;
+  outline: 0;
+}
+
+#search-form > button {
+  position: relative;
+  border: none;
+  background: none;
+  bottom: 1px;
+  outline: 0;
+}
+
+.list-item {
+  overflow: hidden;
+  list-style: none;
+  margin-top: 15px;
+  /* border: 1px solid #000; */
+  border-radius: 10px;
+  position: relative;
+}
+
+.item-link {
+  position: relative;
+  display: flex;
+  align-content: center;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  background-color: #595959;
+  width: 300px;
+  height: 165px;
+  transition: all 0.2s linear;
+}
+
+.item-info {
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  left: 110px;
+  /* opacity: 0; */
+  transition: all 0.2s linear;
+}
+
+.item-image {
+  overflow: hidden;
+  border-radius: 3px;
+  width: 110px;
+  transition: all 0.2s linear;
+  /* display: flex; */
+}
+
+.item-poster {
+  width: 100%;
+  border-radius: 5px;
+  transition: all 0.2s linear;
+  border-radius: 10px;
+}
+
+.item-title {
+  padding: 5px;
+  padding-top: 15px;
+  height: 50%;
+}
+
+.item-year {
+  height: 25%;
+}
+
+.list-item:hover .item-image {
+  width: 100%;
+}
+
+.list-item:hover .item-info {
+  opacity: 0;
+  transition: all 0.4s linear;
+  position: absolute;
+  left: 300px;
+}
+
+.item-overlay {
+  position: absolute;
+  color: rgb(5, 185, 130);
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s linear;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid rgb(5, 185, 130);
+  border-radius: 10px;
+}
+
+.list-item:hover .item-overlay {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.list-controls {
+  width: 130px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.page-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  border: 1px solid #000;
+}
+
+.non-visible {
+  display: none;
+}
+
+.control-btn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #dddddd;
+  border: 2px solid;
+  border-color: #556270;
+  color: #556270;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.control-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+/* .list-controls .btn-prev span::before {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -40px;
+  transition: 0.5s;
+} */
+
+.list-controls .btn-prev:hover span {
+  padding-left: 15px;
+}
+
+/* .list-controls .btn-prev:hover span:before {
+  opacity: 1;
+  left: 0;
+} */
+
+/* .list-controls .btn-next span::after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -40px;
+  transition: 0.5s;
+} */
+
+.list-controls .btn-next:hover span {
+  padding-right: 15px;
+}
+
+/* .list-controls .btn-next:hover span:after {
+  opacity: 1;
+  right: 0;
+} */
+
+.control-btn:hover {
+  background-color: #b6b6b6;
+}
+
+.control-btn:active {
+  background-color: #fff;
+}
