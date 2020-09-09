@@ -23,12 +23,6 @@ function MainPage() {
   refs.listControls.addEventListener('click', litsControlsHandler);
   refs.moviesList.addEventListener('click', e=>{
     e.preventDefault();
-
-    // console.dir(e.target.closest('li').querySelector('a').getAttribute('href'));
-    // console.dir(e.target)
-
-    // console.log(window['router'].navigate);
-
     window['router'].navigate(e.target.closest('li').querySelector('a').getAttribute('href'));
   })
 
