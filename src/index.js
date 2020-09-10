@@ -8,7 +8,9 @@ import './styles/tabletHeaderFooter.css';
 import Router from './utilites/router';
 import MainPage from './pages/mainPage';
 import FilmPage from './pages/filmDetailPage';
-import libraryPage from './pages/libraryPage.js';
+import libraryPageWatched from './pages/libraryPageWatched.js';
+import libraryPageQueue from './pages/libraryPageQueue.js';
+
 import './utilites/scrollToTop';
 import './utilites/navigation';
 
@@ -25,13 +27,13 @@ window['router'] = new Router({
     {
       path: 'library/watched',
       callback: () => {
-        libraryPage();
+        libraryPageWatched();
       },
     },
     {
       path: 'library/queue',
       callback: () => {
-        libraryPage();
+        libraryPageQueue();
       },
     },
     {
