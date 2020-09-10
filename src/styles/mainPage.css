@@ -11,6 +11,7 @@
   min-width: 320px;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 #search-form {
@@ -50,7 +51,7 @@
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   color: white;
-  background-color: #595959;
+  background-color: #009688;
   width: 300px;
   height: 165px;
   transition: all 0.2s linear;
@@ -140,8 +141,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  border: 1px solid #000;
+  height: 30px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: 2px solid;
+  border-color: #556270;
+  border-radius: 4px;
+  background-color: #dddddd;
+  cursor: default;
 }
 
 .non-visible {
@@ -165,6 +172,7 @@
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
+  height: 30px;
 }
 
 .control-btn span {
@@ -182,6 +190,7 @@
   left: -40px;
   transition: 0.5s;
 } */
+
 
 .list-controls .btn-prev:hover span {
   padding-left: 15px;

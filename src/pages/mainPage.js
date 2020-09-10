@@ -1,9 +1,10 @@
 import MainPageTemplate from '../templates/Main.hbs';
 import listTemplate from '../templates/movieListItem.hbs';
 
-import trendsApi from '../services/apiRequestTrendings'
+import trendsApi from '../services/apiRequestTrendings';
 import tmdbApi from '../services/apiRequestMain';
 
+import notFoundImage from '../images/NotFoundActor.png';
 
 import { ROOT_DOM } from '../constants';
 
@@ -14,11 +15,7 @@ function MainPage() {
   }
   renderBaseMarkup();
 
-
-  trendsApi().then(data=>dataParser(data));
-
-
-  
+  trendsApi().then(data => dataParser(data));
 
   const refs = {
     inputForm: document.querySelector('#search-form'),
@@ -36,12 +33,22 @@ function MainPage() {
   });
 
   const buttonsArrRef = refs.listControls.querySelectorAll('button');
+
   buttonsArrRef.forEach(btn => (btn.disabled = true));
+
   buttonsArrRef.forEach(btn => btn.classList.remove('control-btn'));
   buttonsArrRef.forEach(btn => btn.classList.add('non-visible'));
+  refs.listControls.classList.add('non-visible');
 
   function inputFormHandler(e) {
     e.preventDefault();
+
+    refs.listControls.querySelector('.page-number-value').textContent = 1
+    refs.listControls.classList.remove('non-visible');
+
+    buttonsArrRef.forEach(btn => (btn.disabled = true));
+    buttonsArrRef.forEach(btn => btn.classList.remove('control-btn'));
+    buttonsArrRef.forEach(btn => btn.classList.add('non-visible'));
 
     const input = e.currentTarget.querySelector('input');
     const inputValue = input.value;
@@ -58,11 +65,20 @@ function MainPage() {
     tmdbApi.fetchRequest().then(data => {
       dataParser(data.results);
 
+      if (data.total_pages === 0) {
+        return;
+      }
+
+      if (data.page === data.total_pages) {
+        return;
+      }
+     
+
       buttonsArrRef[1].disabled = false;
       buttonsArrRef[1].classList.remove('non-visible');
       buttonsArrRef[1].classList.add('control-btn');
 
-      updatePageNumber(tmdbApi.page);
+      
     });
   }
 
@@ -74,15 +90,17 @@ function MainPage() {
     const newArray = array.map(el => {
       const newObj = {
         id: el.id,
-        original_title: el.original_title,
-        poster_path: el.poster_path,
+        originalTitle: el.original_title,
+        img:
+          el.poster_path !== null
+            ? `https://image.tmdb.org/t/p/original${el.poster_path}`
+            : notFoundImage,
         title: el.title,
-        release_date:
+        year:
           el.release_date === undefined
             ? 'unknown'
             : el.release_date.substr(0, 4),
-        havePoster: el.poster_path ? true : false,
-        vote_average: el.vote_average,
+        vote: el.vote_average,
       };
 
       return newObj;
@@ -164,12 +182,18 @@ function MainPage() {
 
       prevBtn.classList.remove('control-btn');
       prevBtn.classList.add('non-visible');
+
+      nextBtn.classList.remove('non-visible');
+      nextBtn.classList.add('control-btn');
     } else if (currentPage === maxPage) {
       prevBtn.disabled = false;
       nextBtn.disabled = true;
 
       nextBtn.classList.remove('control-btn');
       nextBtn.classList.add('non-visible');
+
+      prevBtn.classList.remove('non-visible');
+      prevBtn.classList.add('control-btn');
     } else {
       nextBtn.disabled = false;
       prevBtn.disabled = false;
