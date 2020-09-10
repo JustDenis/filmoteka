@@ -2,8 +2,9 @@ import FilmPageTemplate from '../templates/Film.hbs';
 import apiRequestFilm from '../services/apiRequestFilm';
 import notFound from '../images/NotFoundActor.png';
 import { ROOT_DOM } from '../constants';
-let filmObject;
+
 const FilmPage = () => {
+  let filmObject;
   apiRequestFilm().then(data => {
     const {
       title,
@@ -17,7 +18,7 @@ const FilmPage = () => {
       original_title,
       id,
     } = data;
-    let filmObject = {
+    filmObject = {
       img:
         poster_path !== null
           ? `https://image.tmdb.org/t/p/original${poster_path}`
@@ -30,7 +31,7 @@ const FilmPage = () => {
       genres: genres.map(genre => genre.name),
       overview,
       originalTitle: original_title,
-      id: id,
+      id,
     };
     const markup = FilmPageTemplate(filmObject);
     ROOT_DOM.innerHTML = markup;
@@ -38,47 +39,36 @@ const FilmPage = () => {
     addWatchBtnRef.addEventListener('click', toggleToWatched);
     const addToQueueBtnRef = document.querySelector('.film__buttons--queue');
     addToQueueBtnRef.addEventListener('click', toggleToQueue);
-    function toggleToWatched() {
-      const filmsWatchedObj = {
-        ...filmObject,
-      };
-      const localStorageData = localStorage.getItem('filmsWatched');
-      if (!localStorageData) {
-        const filmsWatchedArr = [filmsWatchedObj];
-        localStorage.setItem('filmsWatched', JSON.stringify(filmsWatchedArr));
-      } else {
-        const filmsWatchedArr = JSON.parse(localStorageData);
-        filmsWatchedArr.forEach(el => {
-          if (el.id !== filmsWatchedObj.id) {
-            const newFilmWatchedArr = [filmsWatchedObj, ...filmsWatchedArr];
-            localStorage.setItem(
-              'filmsWatched',
-              JSON.stringify(newFilmWatchedArr),
-            );
-          }
-        });
-      }
-    }
-
-    function toggleToQueue() {
-      const filmsQueueObj = {
-        ...filmObject,
-      };
-      const localStorageData = localStorage.getItem('filmsQueue');
-      if (!localStorageData) {
-        const filmsQueueArr = [filmsQueueObj];
-        localStorage.setItem('filmsQueue', JSON.stringify(filmsQueueArr));
-      } else {
-        const filmsQueueArr = JSON.parse(localStorageData);
-        filmsQueueArr.forEach(el => {
-          if (el.id !== filmsQueueObj.id) {
-            const newFilmQueueArr = [filmsQueueObj, ...filmsQueueArr];
-            localStorage.setItem('filmsQueue', JSON.stringify(newFilmQueueArr));
-          }
-        });
-      }
-    }
   });
+
+  function toggleToWatched() {
+    toggleLocalStorage('filmsWatched');
+  }
+
+  function toggleToQueue() {
+    toggleLocalStorage('filmsQueue');
+  }
+
+  function toggleLocalStorage(key) {
+    const filmsQueueObj = {
+      ...filmObject,
+    };
+
+    const localStorageData = localStorage.getItem(key);
+    console.log(JSON.parse(localStorageData));
+    if (!localStorageData) {
+      const filmsQueueArr = [filmsQueueObj];
+      localStorage.setItem(key, JSON.stringify(filmsQueueArr));
+    } else {
+      const filmsQueueArr = JSON.parse(localStorageData);
+      const isInclude = filmsQueueArr.some(el => filmsQueueObj.id === el.id);
+      console.log(isInclude);
+      if (!isInclude) {
+        const newFilmQueueArr = [filmsQueueObj, ...filmsQueueArr];
+        localStorage.setItem(key, JSON.stringify(newFilmQueueArr));
+      }
+    }
+  }
 };
 
 export default FilmPage;

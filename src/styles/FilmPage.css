@@ -129,6 +129,19 @@
   background-color: transparent;
   font-weight: 600;
   font-size: 13px;
+  transition: 100ms linear;
+}
+
+.film__buttons--favorite:hover,
+.film__buttons--queue:hover{
+  transform: scale(1.09);
+  transition: 100ms linear;
+}
+
+.film__buttons--favorite:active,
+.film__buttons--queue:active{
+  transform: scale(1.05);
+  transition: 100ms linear;
 }
 
 .film__buttons--favorite,
@@ -144,15 +157,8 @@
   padding-left: 5px;
 }
 
-.film__buttons--favorite::before {
-  content: url(../images/detailsVideo.png);
-  padding-right: 4px;
-}
-
-.film__buttons--queue:before {
-  content: url(../images/detailsCalendar.png);
-  padding-right: 4px;
-  margin-top: 6px;
+.icon-blue{
+  color: rgb(5, 185, 130);
 }
 
 @media (min-width: 768px) {
