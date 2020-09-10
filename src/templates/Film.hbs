@@ -23,7 +23,7 @@
 
         <div class="film__description--genre">
             <p class="film__genre--title">genre</p>
-            <ul class="film__votes--value">
+            <ul class="film__votes">
                 {{#each genres}}
                 <li class="film__votes--value">{{this}}</li>
                 {{/each}}
@@ -34,9 +34,7 @@
         <p class="film__description--text">{{overview}}</p>
 
         <div class="film__description--buttons">
-            <img class="videoBtn" src="./images/detailsVideo.png" alt="" />
             <button class="film__buttons--favorite">Add to watched</button>
-            <img src="./images/detailsCalendar.png" alt="" class="calendarBtn" />
             <button class="film__buttons--queue">Add to queue</button>
         </div>
     </div>
