@@ -13,19 +13,25 @@
 
   <body>
     <header class="header">
-      <div class="container">
+      <div class="container__header">
         <div class="header__inner">
-          <img
-            src="./images/headerLogoMobile.png"
-            alt=""
-            class="header__logo"
-          />
+          <a href="/" class="header__img-link">
+            <div class="header__img">
+            <img src="./images/headerLogoMobile.png" alt="" class="header__logo" />
+            <img
+              src="./images/headerLogoText.png"
+              alt=""
+              class="header__logotxt"
+            />
+          </div>
+          </a>
+          
           <ul class="header__items">
             <li class="header__item">
-              <a href="https://www.google.com/" class="header__link">HOME</a>
+              <a href="/" data-action="home" class="header__link">HOME</a>
             </li>
             <li class="header__item">
-              <a href="https://www.google.com/" class="header__link"
+              <a href="/library/watched" data-action="library" class="header__link"
                 >MY LIBRARY</a
               >
             </li>
@@ -40,11 +46,10 @@
       <h2 class="footer__description">Made by TheBestTeam</h2>
 
       <button class="btnup">
-        <a href="#" title="Вернуться к началу" class="topbutton">
+        <a href="#" class="topbutton">
           <img src="./images/btnup.png" alt="" class="footer__img" />
         </a>
       </button>
-      <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
     </footer>
   </body>
 </html>
