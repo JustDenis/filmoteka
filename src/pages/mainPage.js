@@ -123,7 +123,7 @@ function MainPage() {
     } else {
       clearMoviesList();
       prevPageBtnHandler();
-      console.dir(e.target.closest('button'));
+
     }
   }
 
@@ -173,8 +173,6 @@ function MainPage() {
     const nextBtn = buttonsArrRef[1];
 
     updatePageNumber(currentPage, maxPage);
-
-    console.log(currentPage);
 
     if (currentPage === 1) {
       prevBtn.disabled = true;
