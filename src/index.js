@@ -12,8 +12,9 @@ import libraryPageWatched from './pages/libraryPageWatched.js';
 import libraryPageQueue from './pages/libraryPageQueue.js';
 
 import './utilites/scrollToTop';
-import './utilites/navigation';
+import initNavigation from './utilites/navigation';
 
+initNavigation();
 
 window['router'] = new Router({
   root: '/',

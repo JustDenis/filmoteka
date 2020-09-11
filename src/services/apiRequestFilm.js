@@ -1,7 +1,5 @@
 import getFilmId from '../utilites/parseQueryString';
-
-const BASE_URL = 'https://api.themoviedb.org';
-const API_KEY = 'a4cc8d4a15480ac80c7df65d6ff4a5ea';
+import { BASE_URL, API_KEY } from '../constants';
 
 function fetchFilmData() {
   let filmId = getFilmId();
@@ -9,4 +7,5 @@ function fetchFilmData() {
     `${BASE_URL}/3/movie/${filmId}?api_key=${API_KEY}&language=en-US`,
   ).then(data => data.json());
 }
+
 export default fetchFilmData;
