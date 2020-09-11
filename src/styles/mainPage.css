@@ -226,3 +226,43 @@
 .control-btn:active {
   background-color: #fff;
 }
+
+@media (min-width: 767px){
+  .films-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .list-item{
+    margin-right: 20px;
+  }
+
+  .list-item:nth-child(2n) {
+    margin-right: 0;
+}
+}
+
+@media (min-width: 1024px){
+  .container-main {
+    max-width: 940px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .item-link {
+    width: 400px;
+    height: 165px;
+  }
+  
+  .item-info {
+    width: 290px;
+  }
+  
+  .item-image {
+    width: 110px;
+  }
+}
