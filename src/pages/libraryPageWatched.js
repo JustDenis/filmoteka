@@ -14,6 +14,12 @@ const libraryPageWatched = () => {
      const markup = movieListItem(filmsArray);
      filmListRef.innerHTML = markup;
   }
+  filmListRef.addEventListener('click', e => {
+    e.preventDefault();
+    window['router'].navigate(
+      e.target.closest('li').querySelector('a').getAttribute('href'),
+    );
+  });
   
   function handleButtonClick(e) {
     if (!e.target.dataset.action) {
