@@ -1,12 +1,14 @@
 @media (min-width: 768px) {
-  .header__img {
-    width: 126px;
-    height: 19px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .header__logotxt {
+
+  .header__logo-desc {
     display: block;
+    padding-left: 10px;
+    padding-top: 4px;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 16px;
+    color: #514367;
+    text-decoration: none;
   }
 }
