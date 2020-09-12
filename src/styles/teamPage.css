@@ -54,6 +54,7 @@
 .box:hover .icon,
 .box:hover .name-developer{
     color:#009688;
+    cursor: pointer;
 };
 
 .footer{
