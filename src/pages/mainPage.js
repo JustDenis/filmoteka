@@ -31,6 +31,15 @@ async function nextPageBtnHandler() {
     return;
   }
 
+
+  setTimeout()
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
+
+
   const data = await tmdbApi.fetchRequest();
   const parsedData = dataParser(data.results);
 
