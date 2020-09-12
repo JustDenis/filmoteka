@@ -11,10 +11,13 @@ import MainPage from './pages/mainPage';
 import FilmPage from './pages/filmDetailPage';
 import libraryPageWatched from './pages/libraryPageWatched.js';
 import libraryPageQueue from './pages/libraryPageQueue.js';
+import teamPage from './pages/teamPage';
 
 import './utilites/scrollToTop';
 import initNavigation from './utilites/navigation';
+import navigateToTeamPage from './utilites/navigateToTeamPage';
 
+navigateToTeamPage();
 initNavigation();
 
 window['router'] = new Router({
@@ -36,6 +39,12 @@ window['router'] = new Router({
       path: 'library/queue',
       callback: () => {
         libraryPageQueue();
+      },
+    },
+    {
+      path: 'developers',
+      callback: () => {
+        teamPage();
       },
     },
     {
