@@ -284,7 +284,6 @@
   }
   .film__descrition--buttons {
     display: flex;
-    justify-content: start;
   }
 
   .film__description--votes,

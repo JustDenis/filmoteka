@@ -12,33 +12,25 @@ const refs = {};
 let buttonsArrRef = [];
 
 function renderBaseMarkup() {
-  ROOT_DOM.innerHTML =  MainPageTemplate();
+  ROOT_DOM.innerHTML = MainPageTemplate();
 }
 
 function renderMoviesListData(moviesList) {
   const markup = listTemplate(moviesList);
-  refs.moviesList.insertAdjacentHTML('beforeend', markup);
-}
-
-function clearMoviesList() {
-  refs.moviesList.innerHTML = '';
+  refs.moviesList.innerHTML = markup;
 }
 
 async function nextPageBtnHandler() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+
   tmdbApi.incrementPage();
 
   if (tmdbApi.query === '') {
     return;
   }
-
-
-  setTimeout()
-
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  })
-
 
   const data = await tmdbApi.fetchRequest();
   const parsedData = dataParser(data.results);
@@ -52,6 +44,11 @@ async function nextPageBtnHandler() {
 }
 
 async function prevPageBtnHandler() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+
   if (tmdbApi.page === 1) {
     return;
   }
@@ -116,10 +113,8 @@ function listControlsHandler(e) {
   const actionType = e.target.closest('button').dataset.action;
 
   if (actionType === 'increment') {
-    clearMoviesList();
     nextPageBtnHandler();
   } else {
-    clearMoviesList();
     prevPageBtnHandler();
   }
 }
@@ -153,7 +148,7 @@ function navigateToDetailPage(event) {
 async function inputFormHandler(e) {
   e.preventDefault();
 
-  refs.listControls.querySelector('.page-number-value').textContent = 1
+  refs.listControls.querySelector('.page-number-value').textContent = 1;
   refs.listControls.classList.remove('non-visible');
 
   buttonsArrRef.forEach(btn => (btn.disabled = true));
@@ -168,7 +163,6 @@ async function inputFormHandler(e) {
     return;
   }
 
-  clearMoviesList();
   tmdbApi.resetPage();
   tmdbApi.searchQuery = parsedValue;
 
