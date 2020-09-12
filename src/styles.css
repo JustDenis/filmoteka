@@ -12,6 +12,11 @@ body {
   width: 1024px;
 }
 
+#root{
+  min-height: calc(100vh - 153px);
+  position: relative;
+}
+
 @font-face{
   font-family: 'Roboto';
   src: url('./fonts/Roboto.woff2');
