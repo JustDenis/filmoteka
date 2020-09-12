@@ -1,4 +1,4 @@
-export default window.onscroll = function buttonUp() {
+window.onscroll = function buttonUp() {
   document.querySelector('.btnup').style.display =
     window.pageYOffset > '200' ? 'block' : 'none';
 };
@@ -6,10 +6,11 @@ export default window.onscroll = function buttonUp() {
 const buttonUp = document.querySelector('.btnup');
 buttonUp.addEventListener('click', scrolling);
 
-function scrolling(e){
+function scrolling() {
     window.scrollTo(
       {
         top: 0,
         behavior: 'smooth',
-      });
-   };
+      }
+    );
+}

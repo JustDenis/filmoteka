@@ -1,5 +1,4 @@
-const API_KEY = 'a4cc8d4a15480ac80c7df65d6ff4a5ea';
-const BASE_URL = 'https://api.themoviedb.org';
+import { BASE_URL, API_KEY } from '../constants';
 
 export default {
   query: '',
