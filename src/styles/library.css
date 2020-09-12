@@ -84,6 +84,20 @@
    margin: 0 auto;
    text-align: center;
  }
+
+ .empty-films {
+  display:block;
+  color: #000;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+
+ }
  
  
  @media (min-width: 768px) {

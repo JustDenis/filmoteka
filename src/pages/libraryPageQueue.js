@@ -15,8 +15,16 @@ const libraryPageQueue = () => {
 
   const filmsQueue = localStorage.getItem('filmsQueue');
 
+  const filmsArray = JSON.parse(localStorage.getItem('filmsQueue'));
+  const emptyFilms = document.querySelector('.empty-films');
+  
+  if (filmsQueue === null || filmsArray.length === 0){
+    emptyFilms.textContent = 'You dont have films in queue. Add them.';
+    emptyFilms.classList.remove('non-visible');
+    
+};
+
   if (filmsQueue) {
-     const filmsArray = JSON.parse(localStorage.getItem('filmsQueue'));
      const markup = movieListItem(filmsArray);
 
      filmListRef.innerHTML = markup;
