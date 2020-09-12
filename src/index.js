@@ -5,6 +5,7 @@ import './styles/FilmPage.css';
 import './styles/desktopHeaderFooter.css';
 import './styles/mobileHeaderFooter.css';
 import './styles/tabletHeaderFooter.css';
+import './styles/teamPage.css';
 import Router from './utilites/router';
 import MainPage from './pages/mainPage';
 import FilmPage from './pages/filmDetailPage';
