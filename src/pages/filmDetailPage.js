@@ -1,7 +1,10 @@
 import FilmPageTemplate from '../templates/Film.hbs';
 import WatchVideoTemplate from '../templates/WatchVideoTemplate.hbs';
+import filmSliderTemplate from '../templates/filmSliderTemplate.hbs';
+import swiper from '../utilites/swiperApiSlider';
 import apiRequestFilm from '../services/apiRequestFilm';
 import apiRequestVideo from '../services/apiRequestVideo';
+import apiSimilarFilm from '../services/apiRequestSimilarFilm';
 import notFound from '../images/NotFoundActor.png';
 import { ROOT_DOM } from '../constants';
 
@@ -43,13 +46,21 @@ const FilmPage = async () => {
   ROOT_DOM.innerHTML = markup;
 
   const playBtnRef = document.querySelector('.play-btn');
-
   playBtnRef.addEventListener('click', watchVideo);
+
   async function watchVideo() {
     const { results } = await apiRequestVideo(filmObject.id);
     insertItem(...results);
     addEventListenerAndRef();
   }
+
+  async function makeSimilarFilmSlider() {
+    const { results } = await apiSimilarFilm(filmObject.id);
+    insertSliderItem(results);
+    swiper();
+  }
+
+  makeSimilarFilmSlider();
 
   const addWatchBtnRef = document.querySelector('.film__buttons--favorite');
   const addToQueueBtnRef = document.querySelector('.film__buttons--queue');
@@ -60,6 +71,12 @@ const FilmPage = async () => {
   addWatchBtnRef.addEventListener('click', toggleToWatched);
   addToQueueBtnRef.addEventListener('click', toggleToQueue);
 };
+
+function insertSliderItem(item) {
+  const ref = document.querySelector('.swiper-wrapper');
+  const markupItems = filmSliderTemplate(item);
+  ref.insertAdjacentHTML('afterbegin', markupItems);
+}
 
 function insertItem(item) {
   const mark = WatchVideoTemplate(item);
