@@ -41,3 +41,10 @@ a{
   font-weight: 700;
   font-stretch: normal;
 }
+
+@font-face{
+  font-family: 'DancingScript';
+  src: url('./fonts/DancingScript-Bold.ttf');
+  font-weight: 700;
+  font-stretch: normal;
+}
