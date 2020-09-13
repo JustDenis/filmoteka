@@ -6,7 +6,11 @@ import tmdbApi from '../services/apiRequestMain';
 
 import notFoundImage from '../images/NotFoundActor.png';
 
-import { ROOT_DOM, headerItemRef, homeRef } from '../constants';
+import {
+  ROOT_DOM,
+  headerItemRef,
+  homeRef
+} from '../constants';
 
 const refs = {};
 let buttonsArrRef = [];
@@ -124,15 +128,11 @@ function dataParser(array) {
     return {
       id: el.id,
       originalTitle: el.original_title,
-      img:
-        el.poster_path !== null
-          ? `https://image.tmdb.org/t/p/original${el.poster_path}`
-          : notFoundImage,
+      img: el.poster_path !== null ?
+        `https://image.tmdb.org/t/p/original${el.poster_path}` : notFoundImage,
       title: el.title,
-      year:
-        el.release_date === undefined
-          ? 'unknown'
-          : el.release_date.substr(0, 4),
+      year: el.release_date === undefined ?
+        'unknown' : el.release_date.substr(0, 4),
       vote: el.vote_average,
     };
   });
@@ -167,6 +167,16 @@ async function inputFormHandler(e) {
   tmdbApi.searchQuery = parsedValue;
 
   const data = await tmdbApi.fetchRequest();
+  // console.log(data);
+  if (data.total_results === 0) {
+    refs.emptyFilms = document.querySelector(".empty-films");
+    refs.listControls.classList.add("non-visible");
+    refs.moviesList.innerHTML = "";
+    console.log(refs);
+    refs.emptyFilms.textContent = ("Films not founds");
+    refs.emptyFilms.classList.remove("non-visible");
+    return;
+  }
   const parsedData = dataParser(data.results);
 
   renderMoviesListData(parsedData);
