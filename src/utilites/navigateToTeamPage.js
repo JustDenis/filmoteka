@@ -10,4 +10,4 @@ function aboutTeamPage () {
 }
 
 
-    export default aboutTeamPage;
+export default aboutTeamPage;

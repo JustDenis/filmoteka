@@ -60,8 +60,14 @@ const FilmPage = async () => {
   }
 
   async function makeSimilarFilmSlider() {
-    const { results } = await apiSimilarFilm(filmObject.id);
-    insertSliderItem(results);
+    const { results, total_results } = await apiSimilarFilm(filmObject.id);
+    if(total_results === 0 ){
+      const swiperContainerRef = document.querySelector('.swiper-container');
+      swiperContainerRef.classList.add('non-visible');
+      return;
+    }
+    const parsedFilms = parseObjectToSimilar(results)
+    insertSliderItem(parsedFilms);
     swiper();
   }
 
@@ -77,10 +83,10 @@ const FilmPage = async () => {
   addToQueueBtnRef.addEventListener('click', toggleToQueue);
 };
 
-function insertSliderItem(item) {
+function insertSliderItem(items) {
   const ref = document.querySelector('.swiper-wrapper');
-  const markupItems = filmSliderTemplate(item);
-  ref.insertAdjacentHTML('afterbegin', markupItems);
+  const markupItems = filmSliderTemplate(items);
+  ref.insertAdjacentHTML('beforeend', markupItems);
 }
 
 function insertItem(item) {
@@ -157,7 +163,6 @@ function toggleToWatched(event) {
 }
 
 function toggleToQueue(event) {
-  // toggleLocalStorage('filmsQueue');
   if (event.target.dataset.action === 'add') {
     toggleLocalStorage('filmsQueue');
     event.target.innerHTML =
@@ -197,6 +202,17 @@ function toggleLocalStorage(key) {
       localStorage.setItem(key, JSON.stringify(newFilmQueueArr));
     }
   }
+}
+
+function parseObjectToSimilar (array) {
+  const parsedArray =  array.map(({title, id, poster_path}) => ({
+    title, 
+    id,
+    imgPath: poster_path !== null
+    ? `https://image.tmdb.org/t/p/original${poster_path}`
+    : notFound,
+  }))
+  return parsedArray;
 }
 
 export default FilmPage;

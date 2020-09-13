@@ -44,7 +44,7 @@
   background-color: #77c1bb;
 }
 
-img {
+.items-photo {
   padding: 4px;
   box-shadow: -20px 20px 0 -17px #fff, 20px -20px 0 -17px #fff,
     20px 20px 0 -20px #77c1bb, 0 0 0 2px #77c1bb;
