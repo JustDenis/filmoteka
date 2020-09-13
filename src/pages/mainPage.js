@@ -6,7 +6,7 @@ import tmdbApi from '../services/apiRequestMain';
 
 import notFoundImage from '../images/NotFoundActor.png';
 
-import { ROOT_DOM } from '../constants';
+import { ROOT_DOM, headerItemRef, homeRef } from '../constants';
 
 const refs = {};
 let buttonsArrRef = [];
@@ -184,6 +184,10 @@ async function inputFormHandler(e) {
 }
 
 async function MainPage() {
+  headerItemRef.forEach(el => {
+    el.classList.remove('header__item--active')
+  });
+  homeRef.classList.add('header__item--active');
   renderBaseMarkup();
 
   refs.inputForm = document.querySelector('#search-form');

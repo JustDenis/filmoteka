@@ -4,3 +4,8 @@
     color: #4a148c;
     font-weight: 500;
 }
+
+.header__item--active {
+    border-bottom: 3px solid #372c48;
+
+}

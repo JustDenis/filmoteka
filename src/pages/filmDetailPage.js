@@ -6,7 +6,7 @@ import apiRequestFilm from '../services/apiRequestFilm';
 import apiRequestVideo from '../services/apiRequestVideo';
 import apiSimilarFilm from '../services/apiRequestSimilarFilm';
 import notFound from '../images/NotFoundActor.png';
-import { ROOT_DOM } from '../constants';
+import { ROOT_DOM, homeRef, headerItemRef } from '../constants';
 
 let filmObject;
 let btnClose;
@@ -41,6 +41,11 @@ const FilmPage = async () => {
     originalTitle: original_title,
     id,
   };
+  
+  headerItemRef.forEach(el => {
+    el.classList.remove('header__item--active')
+  });
+  homeRef.classList.add('header__item--active');
 
   const markup = FilmPageTemplate(filmObject);
   ROOT_DOM.innerHTML = markup;
