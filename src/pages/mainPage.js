@@ -167,15 +167,18 @@ async function inputFormHandler(e) {
   tmdbApi.searchQuery = parsedValue;
 
   const data = await tmdbApi.fetchRequest();
-  // console.log(data);
+
   if (data.total_results === 0) {
     refs.emptyFilms = document.querySelector(".empty-films");
     refs.listControls.classList.add("non-visible");
     refs.moviesList.innerHTML = "";
-    console.log(refs);
     refs.emptyFilms.textContent = ("Films not founds");
     refs.emptyFilms.classList.remove("non-visible");
     return;
+  }
+
+  if(data.total_pages === 1) {
+    refs.listControls.classList.add("non-visible");
   }
   const parsedData = dataParser(data.results);
 
