@@ -14,12 +14,14 @@ import libraryPageWatched from './pages/libraryPageWatched.js';
 import libraryPageQueue from './pages/libraryPageQueue.js';
 import teamPage from './pages/teamPage';
 
-import './utilites/scrollToTop';
+
+import initScrollToTop from './utilites/scrollToTop';
 import initNavigation from './utilites/navigation';
 import navigateToTeamPage from './utilites/navigateToTeamPage';
 
 navigateToTeamPage();
 initNavigation();
+initScrollToTop();
 
 window['router'] = new Router({
   root: '/',
