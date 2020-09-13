@@ -2,6 +2,7 @@ import './styles.css';
 import './styles/library.css';
 import './styles/mainPage.css';
 import './styles/FilmPage.css';
+import './styles/slider.css';
 import './styles/desktopHeaderFooter.css';
 import './styles/mobileHeaderFooter.css';
 import './styles/tabletHeaderFooter.css';

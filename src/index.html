@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Filmoteka</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -16,18 +21,23 @@
       <div class="container__header">
         <div class="header__inner">
           <a href="/" class="header__img-link">
-            
-            <img src="./images/headerLogoMobile.png" alt="" class="header__logo" />
+            <img
+              src="./images/headerLogoMobile.png"
+              alt=""
+              class="header__logo"
+            />
             <p class="header__logo-desc">Filmoteka</p>
-          
           </a>
-          
+
           <ul class="header__items">
             <li class="header__item">
               <a href="/" data-action="home" class="header__link">HOME</a>
             </li>
             <li class="header__item">
-              <a href="/library/watched" data-action="library" class="header__link"
+              <a
+                href="/library/watched"
+                data-action="library"
+                class="header__link"
                 >MY LIBRARY</a
               >
             </li>
@@ -38,6 +48,15 @@
 
     <main id="root"></main>
 
+    <div class="swiper-container">
+      <h2 class="similar-film">Watching similar movie</h2>
+      <div class="swiper-wrapper"></div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-scrollbar"></div>
+    </div>
+
     <footer class="footer">
       <h2 class="footer__description">Made by TheBestTeam</h2>
 
@@ -46,4 +65,7 @@
       </button>
     </footer>
   </body>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </html>
