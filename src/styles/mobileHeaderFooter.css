@@ -41,10 +41,10 @@
   font-weight: 500;
   list-style: none;
 }
-.header__item:hover {
+/* .header__item:hover {
   border-bottom: 3px solid #372c48;
   transition: 200ms;
-}
+} */
 .header__link {
   display: block;
   text-decoration: none;

@@ -1,8 +1,13 @@
 import movieListItem from '../templates/movieListItem.hbs';
 import btnQueueWatched from '../templates/btnQueueWatched.hbs';
-import { ROOT_DOM } from '../constants';
+import { ROOT_DOM, libraryRef, headerItemRef } from '../constants';
 
 const libraryPageQueue = () => {
+  headerItemRef.forEach(el => {
+    el.classList.remove('header__item--active')
+  });
+  libraryRef.classList.add('header__item--active');
+  
   const markupLibrary = btnQueueWatched();
   ROOT_DOM.innerHTML = markupLibrary;
 
