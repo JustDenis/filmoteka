@@ -55,6 +55,9 @@ const FilmPage = async () => {
   const markup = FilmPageTemplate(filmObject);
   ROOT_DOM.innerHTML = markup;
 
+  const swiperWrapperRef = document.querySelector('.swiper-wrapper');
+  swiperWrapperRef.addEventListener('click', handleSimilarFilmClick);
+
   const playBtnRef = document.querySelector('.play-btn');
   playBtnRef.addEventListener('click', watchVideo);
 
@@ -87,6 +90,17 @@ const FilmPage = async () => {
   addWatchBtnRef.addEventListener('click', toggleToWatched);
   addToQueueBtnRef.addEventListener('click', toggleToQueue);
 };
+
+function handleSimilarFilmClick(event) {
+  event.preventDefault();
+  if(!event.target.nodeName === 'IMG'){
+    return;
+  }
+
+  window['router'].navigate(
+    event.target.closest('a').getAttribute('href'),
+  );
+}
 
 function insertSliderItem(items) {
   const ref = document.querySelector('.swiper-wrapper');
