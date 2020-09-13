@@ -47,6 +47,11 @@ const FilmPage = async () => {
   });
   homeRef.classList.add('header__item--active');
 
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+
   const markup = FilmPageTemplate(filmObject);
   ROOT_DOM.innerHTML = markup;
 
